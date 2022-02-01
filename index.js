@@ -1,4 +1,63 @@
-/* Your Code Here */
+function createEmployeeRecord(array) {
+    return {
+        firstName: array[0],
+        familyName: array[1],
+        title: array[2],
+        payPerHour: array[3],
+            timeInEvents: [],
+            timeOutEvents: []
+    }
+};
+
+function createEmployeeRecords(employees) {
+    return employees.map(employee => createEmployeeRecord(employee))
+}
+
+function createTimeInEvent(event) {
+    let [date, hour] = event.split(" ")
+    let eventObj = {
+        type: "TimeIn",
+        hour: parseInt(hour, 10),
+        date
+    }
+
+    this.timeInEvents.push(eventObj)
+    return this
+}
+
+function createTimeOutEvent(event) {
+    let [date, hour] = event.split(" ")
+    let eventObj = {
+        type: "TimeOut",
+        hour: parseInt(hour, 10),
+        date
+    }
+
+    this.timeOutEvents.push(eventObj)
+    return this
+}
+
+function hoursWorkedOnDate(date) {
+    const timeIn = this.timeInEvents.find(event => event.date === date)
+    const timeOut = this.timeOutEvents.find(event => event.date === date)
+    return (timeOut.hour - timeIn.hour)/100
+}
+
+function wagesEarnedOnDate(date) {
+    const hours = hoursWorkedOnDate.call(this, date)
+    return this.payPerHour * hours
+}
+
+function calculatePayroll(employeeRecords) {
+    const record = employeeRecords.map(employee => allWagesFor.call(employee))
+    return record.reduce((currentValue, total) => currentValue + total)
+}
+
+function findEmployeeByFirstName(employees, firstNameString) {
+    const found = employees.find(emp => emp.firstName === firstNameString)
+    return found
+}
+
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
@@ -20,4 +79,6 @@ const allWagesFor = function () {
 
     return payable
 }
+
+
 
